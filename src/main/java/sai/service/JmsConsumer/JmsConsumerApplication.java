@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Sink;
 import sai.service.JmsConsumer.model.Employee;
 
-@EnableBinding(Sink.class)
+@EnableBinding(Channel.class)
 @SpringBootApplication
 public class JmsConsumerApplication {
 
@@ -15,7 +14,7 @@ public class JmsConsumerApplication {
         SpringApplication.run(JmsConsumerApplication.class, args);
     }
 
-    @StreamListener(Sink.INPUT)
+    @StreamListener("email-output")
     public void handle(Employee employee) throws InterruptedException {
         Thread.sleep(3000);
         System.out.println("employee = " + employee.toString());
