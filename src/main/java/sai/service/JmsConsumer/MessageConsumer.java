@@ -10,8 +10,9 @@ public class MessageConsumer {
 
     @StreamListener(target = "email-output", condition = "headers['type']=='email_sending'")
     public void handle(@Payload  Employee employee) throws InterruptedException {
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         System.out.println("employee = " + employee.toString());
+        throw  new RuntimeException("testing purpose");
 //        System.out.println("employee = [" + employee.getEmpid() + "]");
 //        System.out.println("employee = [" + employee.getName() + "]");
 //        System.out.println("employee = [" + employee.getAddress() + "]");
